@@ -1,0 +1,40 @@
+.card {
+  box-shadow: 22px 20px 11px -17px var(--shadow);
+  border-radius: 5px;
+  text-align: center;
+  width: 70%;
+  color: var(--black);
+  margin: 1em auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  padding: 1em;
+  p {
+    margin: 0;
+  }
+  .btn {
+    margin: 0 0.2em;
+    border-radius: 10%;
+    border: none;
+    padding: 0.3em 0.4em;
+    transition: 450ms all;
+    cursor: pointer;
+    outline: none;
+    img {
+      height: 15px;
+    }
+  }
+}
+.btn-edit {
+  background-color: var(--bg-btn-edit);
+  &:hover {
+    background-color: var(--green);
+  }
+}
+.btn-delete {
+  background-color: var(--bg-btn-delete);
+  &:hover {
+    background-color: var(--red);
+  }
+}

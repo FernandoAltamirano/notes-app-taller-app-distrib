@@ -1,0 +1,18 @@
+.successMessage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2em;
+  border: 1px solid rgb(71, 187, 71);
+  background-color: rgb(117, 220, 117);
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  display: none;
+  p {
+    margin: 0;
+  }
+}
+
+.hidden {
+  display: flex;
+}

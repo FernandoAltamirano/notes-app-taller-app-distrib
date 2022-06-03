@@ -1,0 +1,13 @@
+.header-switch {
+  display: flex;
+  position: relative;
+  align-items: center;
+  .header {
+    width: 100%;
+  }
+  .switch {
+    position: absolute;
+    right: 0;
+    margin-right: 1em;
+  }
+}

@@ -1,0 +1,32 @@
+:root {
+  --bg-principal: rgb(48, 165, 191);
+  --white: rgb(216, 216, 216);
+  --gray: rgb(198, 198, 198);
+  --black: #121212;
+  --shadow: rgba(199, 199, 199, 1);
+  --border: rgb(48, 165, 191);
+  --bg-btn-edit: rgb(48, 165, 191);
+  --bg-btn-delete: rgb(48, 165, 191);
+  --body: rgb(245, 245, 245);
+  --green: rgb(181, 251, 74);
+  --red: rgb(247, 81, 81);
+  --bg-form: rgb(245, 245, 245);
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+  background-color: var(--body);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  @media (min-width: 768px) {
+    grid-template-columns: 60% 40%;
+  }
+  @media (min-width: 1024px) {
+    margin-top: 3em;
+  }
+}
