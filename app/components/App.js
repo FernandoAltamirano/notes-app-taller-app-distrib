@@ -6,33 +6,28 @@ import Switch from "./Switch";
 import ListTasks from "./ListTasks";
 import SuccessMessage from "./SuccessMessage";
 import "../sass/header-switch.scss";
+import { getTasks, getTasksById } from "../utils/HandleRequest";
 export default function App() {
   const [data, setData] = useState([]);
   const [dataUpdate, setDataUpdate] = useState({ title: "", description: "" });
   const [displaySuccessMessage, setDisplaySuccessMessage] = useState("");
-  function fetchData() {
-    fetch("http://localhost:5000/api/tasks")
-      .then((res) => res.json())
-      .then((dataJSON) => setData(dataJSON))
-      .catch((error) => console.log(error));
+  
+  async function fetchData() {
+    const tasks = await getTasks()
+    setData(tasks)
   }
+
   useEffect(() => {
     fetchData();
   }, []);
   function resetDataUpdate() {
     setDataUpdate({ title: "", description: "" });
   }
-  function updateData(response) {
-    console.log(response);
-    fetch("http://localhost:5000/api/tasks/" + response)
-      .then((res) => res.json())
-      .then((dataJSON) => {
-        setDataUpdate(dataJSON);
-      })
-      .catch((error) => console.log(error));
+  async function updateData(id) {
+    const tasks = await getTasksById(id)
+    setDataUpdate(tasks);
   }
   function handleMessageSubmit() {
-    // fetchData();
     setDisplaySuccessMessage("hidden");
     setTimeout(() => {
       setDisplaySuccessMessage("");
@@ -47,6 +42,7 @@ export default function App() {
       <div className="container">
         <div className="container-left">
           <Form
+            fetchData={fetchData}
             handleMessageSubmit={handleMessageSubmit}
             dataUpdate={dataUpdate}
             resetDataUpdate={resetDataUpdate}
@@ -54,7 +50,7 @@ export default function App() {
           <SuccessMessage displaySuccessMessage={displaySuccessMessage} />
         </div>
         <div className="container-right">
-          <ListTasks data={data} updateData={updateData} />
+          <ListTasks fetchData={fetchData} data={data}updateData={updateData} />
         </div>
       </div>
     </Fragment>

@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 import Empty from "./Empty";
 import "../sass/ListTasks.scss";
-export default function ListTasks({ data, updateData }) {
+export default function ListTasks({ data, updateData,fetchData }) {
   return (
     <div>
       <h2 className="titleContainerCards">TASKS</h2>
@@ -13,7 +13,7 @@ export default function ListTasks({ data, updateData }) {
             .reverse()
             .map((item) => {
               return (
-                <Card key={item._id} item={item} updateData={updateData} />
+                <Card key={item._id} item={item} updateData={updateData} fetchData={fetchData}/>
               );
             })
         ) : (

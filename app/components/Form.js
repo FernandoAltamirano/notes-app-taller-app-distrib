@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import {sendTask, updateTask} from "../utils/HandleRequest";
 import "../sass/Form.scss";
 export default function Form(props) {
   const [data, setData] = useState({
@@ -19,33 +19,16 @@ export default function Form(props) {
       [e.target.name]: e.target.value,
     });
   }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
+    e.preventDefault()
     if (props.dataUpdate.title !== "") {
-      fetch("http://localhost:5000/api/tasks/" + props.dataUpdate._id, {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => console.log(res))
-        .catch((err) => console.error(err.message));
+      await updateTask(props.dataUpdate._id,data)
       props.resetDataUpdate();
     } else if (data.title !== "" && data.description !== "") {
-      fetch("http://localhost:5000/api/tasks", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => console.log(res))
-        .catch((err) => console.error(err.message));
+      await sendTask(data)
     }
-    e.preventDefault();
     setData({ title: "", description: "" });
+    props.fetchData()
   }
 
   return (

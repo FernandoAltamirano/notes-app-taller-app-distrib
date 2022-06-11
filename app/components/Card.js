@@ -7,7 +7,9 @@ export default function Card(props) {
   function deleteTask() {
     fetch("http://localhost:5000/api/tasks/" + props.item._id, {
       method: "DELETE",
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      props.fetchData()
+    });
   }
 
   function fetchUpdateData() {
